@@ -1,0 +1,198 @@
+/* 
+====================
+FONTS
+====================
+*/
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+/* 
+====================
+VARIABLES
+====================
+*/
+:root {
+    --clr-primary-1: hsl(184, 91%, 17%);
+    --clr-primary-5: hsl(185, 62%, 45%);
+    --clr-primary-7: hsl(184, 65%, 59%);
+    --clr-primary-8: hsl(184, 80%, 74%);
+    --clr-black:#222;
+    --clr-white:#fff;
+    --clr-grey-1: hsl(208, 63%, 16%);
+    --clr-grey-5: hsl(210, 22%, 49%);
+    --clr-grey-7: hsl(211, 27%, 70%);
+    --clr-grey-8: hsl(210, 31%, 80%);
+    --ff-primary: "lato", "sans-serif";
+    --spacing:0.25rem;
+    --radius:0.5rem;
+    --line-height:1.5;
+    --transition:all 0.3s linear;
+    --box-shadow-light:0 5px 15px rgba(0,0,0,0.1);
+    --box-shadow-dark:0 5px 15px rgba(0,0,0,0.3);
+}
+/* 
+====================
+GLOBAL STYLES
+====================
+*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--ff-primary);
+    background: var(--clr-grey-8);
+    color: var(--clr-grey-1);
+    line-height: var(--line-height);
+    font-size: 0.875rem;
+    font-weight: 400;
+}
+
+img:not(.nav-logo) {
+    width: 100%;
+    display: block;
+}
+
+h1 {
+    letter-spacing: var(--spacing);
+    line-height: 1.25;
+    text-transform: capitalize;
+    margin-bottom: 0.25rem;
+    font-size: 2rem;
+}
+
+p {
+    margin-bottom: 1.25rem;
+    color: var(--clr-white);
+    font-size: 1.25rem;
+}
+
+@media screen and (min-width:800px) {
+    h1 {
+        font-size: 3rem;
+        line-height: 1;
+    }
+    body {
+        font-size: 1rem;
+    }
+}
+
+/* 
+=====================
+GLOBAL-CLASSES
+=====================
+*/
+
+.btn {
+    text-transform: uppercase;
+    background: var(--clr-primary-7);
+    color: var(--clr-grey-1);
+    padding: 0.3rem 0.5rem;
+    letter-spacing: var(--spacing);
+    display: inline-block;
+    transition: var(--transition);
+    font-size: 0.65rem;
+    border: 2px solid transparent;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+.btn:hover {
+    background: var(--clr-primary-8);
+    color: var(--clr-primary-1);
+}
+.section {
+    padding: 5rem 0;
+}
+
+.section-center {
+    width: 90vw;
+    margin: 0 auto;
+    max-width: 1170px;
+}
+
+@media screen and (min-width:992px) {
+    .section-center {
+        width: 95vw;
+    }
+}
+
+/* 
+=====================
+NAVBAR
+=====================
+*/
+.navbar{
+    width: 100%;
+    background: var(--clr-black);
+    border-bottom: 2px solid var(--clr-grey-5);
+}
+.nav-center {
+    width: 100%;
+    max-width: 1170px;
+    margin: 0 auto;
+}
+
+.nav-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0.5rem 2rem;
+    padding-bottom: 0;
+}
+
+/* 
+=====================
+HERO
+=====================
+*/
+.hero {
+    height:25vh;
+    color: var(--clr-white);
+    background: var(--clr-black);
+    border-bottom: 5px solid white;
+    position: relative;
+}
+
+.hero-banner {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+}
+
+.guessed-number {
+    color: var(--clr-black);
+    font-size: 2rem;
+    padding: 0.5rem 1.5rem;
+    background: var(--clr-white);
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+    top:100%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+.btn-reset {
+    position: absolute;
+    top: 100%;
+    box-shadow: none;
+    transform: translate(0,-100%);
+    -webkit-transform: translate(0,-100%);
+    -moz-transform: translate(0,-100%);
+    -ms-transform: translate(0,-100%);
+    -o-transform: translate(0,-100%);
+}

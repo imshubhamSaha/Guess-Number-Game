@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guess my Number</title>
+    <!-- stylesheet -->
+    <link rel="stylesheet" href="./styles/main.css" />
+  </head>
+  <body>
+    <!-- header -->
+    <header>
+      <!-- nav -->
+      <nav class="navbar">
+        <div class="nav-center">
+          <div class="nav-header">
+            <img
+              src="./assets/images/logo/logo.png"
+              alt="logo"
+              class="nav-logo"
+            />
+          </div>
+        </div>
+      </nav>
+      <!-- end of nav -->
+      <!-- hero -->
+      <div class="hero">
+        <div class="hero-banner">
+          <h1>guess number!</h1>
+          <p>(between 1 and 20)</p>
+        </div>
+        <button type="button" class="btn btn-reset">reset</button>
+        <div class="guessed-number">?</div>
+      </div>
+      <!-- end of hero -->
+    </header>
+    <!-- end of header -->
+    <section class="section">
+      <div class="section-center">
+        <!-- article-left -->
+        <article class="left">
+          <label for="guessed-num">enter number</label>
+          <input type="number" name="guess-number" id="guessed-num" />
+          <button type="submit" class="btn btn-submit">check</button>
+        </article>
+        <!-- end of article-left -->
+        <!-- article-right -->
+        <article class="right">
+          <p class="message">start guessing...</p>
+          <p class="label-score">💯 score: <span id="score">0</span></p>
+          <p class="lebel-high-score">
+            🥇 Highscore: <span class="high-score">0</span>
+          </p>
+        </article>
+        <!-- end of article-right -->
+      </div>
+    </section>
+  </body>
+</html>
