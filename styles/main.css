@@ -164,7 +164,6 @@ HERO
     -ms-transform: translate(-50%,-50%);
     -o-transform: translate(-50%,-50%);
 }
-
 .guessed-number {
     color: var(--clr-black);
     font-size: 2rem;
@@ -185,11 +184,18 @@ HERO
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
 }
-
+.hero-center {
+    width: 100%;
+    max-width: 1170px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
 .btn-reset {
-    position: absolute;
-    top: 100%;
+    border-top-right-radius:0.25rem ;
+    border-top-left-radius:0.25rem ;
     box-shadow: none;
+    position: absolute;
+    top:100%;
     transform: translate(0,-100%);
     -webkit-transform: translate(0,-100%);
     -moz-transform: translate(0,-100%);
