@@ -38,23 +38,41 @@
     </header>
     <!-- end of header -->
     <section class="section">
-      <div class="section-center">
-        <!-- article-left -->
-        <article class="left">
-          <label for="guessed-num">enter number</label>
-          <input type="number" name="guess-number" id="guessed-num" />
-          <button type="submit" class="btn btn-submit">check</button>
-        </article>
-        <!-- end of article-left -->
+      <div class="section-center box-center">
+        <!-- decision-container -->
+        <div class="progress-bar">
+          <div class="my-bar start"></div>
+        </div>
+        <div class="message">
+          <span>too low</span>
+          <span>low</span>
+          <span>start guessing</span>
+          <span>high</span>
+          <span>too high</span>
+        </div>
+        <!-- end of decision-container -->
+
         <!-- article-right -->
         <article class="right">
-          <p class="message">start guessing...</p>
           <p class="label-score">💯 score: <span id="score">0</span></p>
-          <p class="lebel-high-score">
-            🥇 Highscore: <span class="high-score">0</span>
+          <p class="label-high-score">
+            🥇 High score: <span id="high-score">0</span>
           </p>
         </article>
         <!-- end of article-right -->
+        <!-- article-left -->
+        <form class="left">
+          <input
+            type="text"
+            name="guess-number"
+            id="guessed-num"
+            value=""
+            placeholder="Enter number"
+            required
+          />
+          <button type="submit" class="btn btn-submit">check</button>
+        </form>
+        <!-- end of article-left -->
       </div>
     </section>
   </body>

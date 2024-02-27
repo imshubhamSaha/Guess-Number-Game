@@ -14,7 +14,7 @@ VARIABLES
     --clr-primary-5: hsl(185, 62%, 45%);
     --clr-primary-7: hsl(184, 65%, 59%);
     --clr-primary-8: hsl(184, 80%, 74%);
-    --clr-black:#222;
+    --clr-black:rgb(0,0,0);
     --clr-white:#fff;
     --clr-grey-1: hsl(208, 63%, 16%);
     --clr-grey-5: hsl(210, 22%, 49%);
@@ -134,7 +134,7 @@ NAVBAR
 
 .nav-header {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     padding: 0.5rem 2rem;
     padding-bottom: 0;
@@ -185,10 +185,14 @@ HERO
     -o-border-radius: 50%;
 }
 .hero-center {
-    width: 100%;
+    width: 90vw;
     max-width: 1170px;
     margin: 0 auto;
-    padding: 0 2rem;
+}
+@media screen and (min-width:992px) {
+    .hero-center {
+        width: 95vw;
+    }
 }
 .btn-reset {
     border-top-right-radius:0.25rem ;
@@ -202,3 +206,71 @@ HERO
     -ms-transform: translate(0,-100%);
     -o-transform: translate(0,-100%);
 }
+/* 
+=====================
+SECTION
+=====================
+*/
+.progress-bar {
+    width: 100%;
+    background: var(--clr-grey-5);
+    position: relative;
+    height: 2rem;
+    border: 1px solid black;
+    border-radius: var(--radius);
+    -webkit-border-radius: var(--radius);
+    -moz-border-radius: var(--radius);
+    -ms-border-radius: var(--radius);
+    -o-border-radius: var(--radius);
+}
+.my-bar {
+    width: 20px;
+    background: green;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem 0;
+    border-radius: var(--radius);
+    -webkit-border-radius: var(--radius);
+    -moz-border-radius: var(--radius);
+    -ms-border-radius: var(--radius);
+    -o-border-radius: var(--radius);
+    position: absolute;
+    top: 0;
+}
+.start {
+    left: 50%;
+    transform: translate(-50%,0);
+    -webkit-transform: translate(-50%,0);
+    -moz-transform: translate(-50%,0);
+    -ms-transform: translate(-50%,0);
+    -o-transform: translate(-50%,0);
+} 
+.low {
+    left: 25%;
+    transform: translate(-50%, 0);
+}
+.too-low {
+    left: 2%;
+}
+.high {
+    left: 75%;
+    transform: translate(-50%, 0);
+}
+.too-high {
+    right: 2%;
+}
+span {
+    display:inline-block;
+    text-transform: capitalize;
+    color: var(--clr-black);
+    font-size: 1.2rem;
+}
+
+.message {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+
