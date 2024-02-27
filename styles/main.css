@@ -60,7 +60,9 @@ h1 {
     margin-bottom: 0.25rem;
     font-size: 2rem;
 }
-
+span{
+    display: inline-block;
+}
 p {
     margin-bottom: 1.25rem;
     color: var(--clr-white);
@@ -103,7 +105,6 @@ GLOBAL-CLASSES
 .section {
     padding: 5rem 0;
 }
-
 .section-center {
     width: 90vw;
     margin: 0 auto;
@@ -197,6 +198,7 @@ HERO
 .btn-reset {
     border-top-right-radius:0.25rem ;
     border-top-left-radius:0.25rem ;
+    padding: 0.5rem 1rem ;
     box-shadow: none;
     position: absolute;
     top:100%;
@@ -208,7 +210,7 @@ HERO
 }
 /* 
 =====================
-SECTION
+DECISION SECTION
 =====================
 */
 .progress-bar {
@@ -247,6 +249,10 @@ SECTION
 .low {
     left: 25%;
     transform: translate(-50%, 0);
+    -webkit-transform: translate(-50%, 0);
+    -moz-transform: translate(-50%, 0);
+    -ms-transform: translate(-50%, 0);
+    -o-transform: translate(-50%, 0);
 }
 .too-low {
     left: 2%;
@@ -254,12 +260,16 @@ SECTION
 .high {
     left: 75%;
     transform: translate(-50%, 0);
+    -webkit-transform: translate(-50%, 0);
+    -moz-transform: translate(-50%, 0);
+    -ms-transform: translate(-50%, 0);
+    -o-transform: translate(-50%, 0);
 }
 .too-high {
     right: 2%;
 }
-span {
-    display:inline-block;
+
+.message span {
     text-transform: capitalize;
     color: var(--clr-black);
     font-size: 1.2rem;
@@ -272,5 +282,87 @@ span {
     align-items: center;
     flex-wrap: wrap;
 }
+
+/* 
+=====================
+INPUT SECTION
+=====================
+*/
+
+.input-section {
+    padding: 0;
+}
+
+.input-section-center {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    width: 70%;
+    max-width: 768px;
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem 0;
+}
+
+.left input {
+   padding:1.5rem 0.5rem;
+   width: 8rem;
+   border: transparent;
+   border-radius: var(--radius);
+   background: wheat;
+   font-size: 1rem;
+   font-weight: 700;
+   transition: var(--transition);
+   -webkit-transition: var(--transition);
+   -moz-transition: var(--transition);
+   -ms-transition: var(--transition);
+   -o-transition: var(--transition);
+   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+   -webkit-border-radius: var(--radius);
+   -moz-border-radius: var(--radius);
+   -ms-border-radius: var(--radius);
+   -o-border-radius: var(--radius);
+}
+.left input:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);;
+    
+}
+.left input ::placeholder {
+    color:var(--clr-black);
+    font-size: 1rem;
+   font-weight: 700;
+}
+.btn-submit {
+    padding: 0.5rem 0.75rem;
+    font-weight: 700;
+}
+
+.right {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.label-score, .label-high-score {
+    color: var(--clr-primary-5);
+    font-size: 1.5rem;
+    margin: 0;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+.right span {
+    color: var(--clr-primary-1);
+}
+
+
 
 
