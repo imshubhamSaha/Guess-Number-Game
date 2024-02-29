@@ -30,26 +30,44 @@
             <h1>guess number!</h1>
             <p>(between 1 and 20)</p>
           </div>
-          <button type="button" class="btn btn-reset">reset</button>
         </div>
-        <div class="guessed-number">?</div>
+        <button class="btn btn-reset" id="resetBtn">reset</button>
       </div>
       <!-- end of hero -->
     </header>
     <!-- end of header -->
+
+    <section id="myModal" class="modal">
+      <div class="modal-content">
+        <div class="container">
+          <h1>Congratulation !!!</h1>
+          <p>you guessed correct</p>
+          <p>
+            please click the button below!
+            <span class="modal-text" id="modal-message">to play again</span>
+          </p>
+          <div class="btn-group">
+            <button type="button" class="btn btn-Again">Again</button>
+            <button type="button" class="btn btn-modal-reset">Reset</button>
+          </div>
+        </div>
+      </div>
+    </section>
     <!-- section-decision -->
     <section class="section decision-section">
       <div class="section-center box-center">
         <!-- decision-container -->
         <div class="progress-bar">
-          <div class="my-bar start"></div>
+          <div class="my-bar"></div>
+          <span class="message-text"></span>
         </div>
-        <div class="message">
+        <div class="labels">
           <span>too low</span>
           <span>low</span>
           <span>start guessing</span>
           <span>high</span>
           <span>too high</span>
+          <span>not allowed</span>
         </div>
         <!-- end of decision-container -->
       </div>
@@ -82,5 +100,6 @@
       </div>
     </section>
     <!-- end of input-section -->
+    <!-- <script src="./scripts/app.js"></script> -->
   </body>
 </html>

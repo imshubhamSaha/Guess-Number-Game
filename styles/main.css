@@ -41,11 +41,23 @@ GLOBAL STYLES
 
 body {
     font-family: var(--ff-primary);
-    background: var(--clr-grey-8);
+    background-color: #ffa399;
+    background-image: radial-gradient(
+        at 96% 84%,
+        hsla(295, 47%, 72%, 1) 0px,
+        transparent 50%
+    ),
+    radial-gradient(at 50% 13%, hsla(294, 47%, 72%, 1) 0px, transparent 50%),
+    radial-gradient(at 88% 54%, hsla(14, 47%, 72%, 1) 0px, transparent 50%),
+    radial-gradient(at 12% 19%, hsla(171, 47%, 72%, 1) 0px, transparent 50%),
+    radial-gradient(at 90% 48%, hsla(104, 47%, 72%, 1) 0px, transparent 50%),
+    radial-gradient(at 17% 48%, hsla(73, 47%, 72%, 1) 0px, transparent 50%),
+    radial-gradient(at 53% 98%, hsla(94, 47%, 72%, 1) 0px, transparent 50%);
     color: var(--clr-grey-1);
     line-height: var(--line-height);
     font-size: 0.875rem;
     font-weight: 400;
+    height: 100vh;
 }
 
 img:not(.nav-logo) {
@@ -130,6 +142,7 @@ NAVBAR
     width: 100%;
     background: var(--clr-black);
     border-bottom: 2px solid var(--clr-grey-5);
+    height: 4rem;
 }
 .nav-center {
     width: 100%;
@@ -153,7 +166,7 @@ HERO
 .hero {
     height:25vh;
     color: var(--clr-white);
-    background: var(--clr-black);
+    /* background: var(--clr-black); */
     border-bottom: 5px solid white;
     position: relative;
 }
@@ -201,12 +214,83 @@ HERO
         width: 95vw;
     }
 }
+/* 
+=====================
+MODAL SECTION
+=====================
+*/
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 4rem;
+    left:0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid red;
+    background-color: rgb(81 91 116 / 70%);
+	z-index: 9;
+    margin-top: 1rem;
+   
+}
+.modal-content {
+    color: black;
+    width: 100%;
+    max-width: 500px;
+    position: relative;
+    box-shadow: 0 0 10px rgb(173 148 148 / 70%);
+    background: var(--clr-white);
+    margin: 1rem;
+    border-radius: var(--radius);
+    -webkit-border-radius: var(--radius);
+    -moz-border-radius: var(--radius);
+    -ms-border-radius: var(--radius);
+    -o-border-radius: var(--radius);
+}
+.container {
+    margin: 1rem;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+}
+.container p{
+    color: black;
+}
+.modal-text {
+    display: block;
+    text-align: center;
+}
+.btn-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+.btn-Again {
+    display: none;
+}
+.show {
+	display: flex;
+}
+
+.hide {
+	display: none;
+}
+
 /*
 =====================
 DECISION SECTION
 =====================
 */
 .progress-bar {
+    /* change */
+    /* display: none; */
     background: var(--clr-grey-5);
     width: 100%;
     position: relative;
@@ -271,6 +355,14 @@ DECISION SECTION
 .message-text {
     display: none;
 }
+.result-message {
+    font-size: 2rem;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    font-weight:700 ;
+
+}
 .transform {
     transform: translate(-50%, 0);
     -webkit-transform: translate(-50%, 0);
@@ -284,6 +376,8 @@ DECISION SECTION
     font-size: 1.2rem;
 }
 .labels {
+    /* change */
+    /* display: none; */
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -337,6 +431,8 @@ INPUT SECTION
 }
 .right {
     display: flex;
+    /* change */
+    /* display: none; */
     flex-direction: column;
     padding-bottom: 2rem;
 }
@@ -345,6 +441,8 @@ INPUT SECTION
     position: absolute;
     top: 100%;
     display: flex;
+    /* change */
+    /* display: none; */
     justify-content:space-around;
     align-items: center;
     width: 100%;
