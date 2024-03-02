@@ -260,7 +260,8 @@ MODAL SECTION
     margin-right: auto;
 }
 .container p{
-    color: black;
+    color: var(--clr-black);
+    text-transform: capitalize;
 }
 .modal-text {
     display: block;

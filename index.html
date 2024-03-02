@@ -40,14 +40,14 @@
     <section id="myModal" class="modal">
       <div class="modal-content">
         <div class="container">
-          <h1>Congratulation !!!</h1>
+          <h1>congratulation !!!</h1>
           <p>you guessed correct</p>
           <p>
             please click the button below!
             <span class="modal-text" id="modal-message">to play again</span>
           </p>
           <div class="btn-group">
-            <button type="button" class="btn btn-Again">Again</button>
+            <button type="button" class="btn btn-again">Again</button>
             <button type="button" class="btn btn-modal-reset">Reset</button>
           </div>
         </div>
@@ -59,7 +59,7 @@
         <!-- decision-container -->
         <div class="progress-bar">
           <div class="my-bar"></div>
-          <span class="message-text"></span>
+          <span class="message-text"> </span>
         </div>
         <div class="labels">
           <span>too low</span>
@@ -77,9 +77,9 @@
     <section class="section input-section">
       <div class="section-center input-section-center">
         <!-- article-left -->
-        <form class="left">
+        <form class="left" method="post">
           <input
-            type="text"
+            type="number"
             name="guess-number"
             id="guessed-num"
             value=""
@@ -91,15 +91,15 @@
         <!-- end of article-left -->
         <!-- article-right -->
         <article class="right">
-          <p class="label-score">💯 score: <span id="score">0</span></p>
+          <p class="label-score">💯 score: <span id="score"></span></p>
           <p class="label-high-score">
-            🥇 High score: <span id="high-score">0</span>
+            🥇 High score: <span id="high-score"></span>
           </p>
         </article>
         <!-- end of article-right -->
       </div>
     </section>
     <!-- end of input-section -->
-    <!-- <script src="./scripts/app.js"></script> -->
+    <script src="./scripts/app.js"></script>
   </body>
 </html>
