@@ -338,7 +338,7 @@ DECISION SECTION
 }
 .too-low {
     left: 3%;
-    background: orangered;
+    background: rgb(255, 145, 0);;
 
 }
 .high {
@@ -347,7 +347,7 @@ DECISION SECTION
 }
 .too-high {
     left: 75%;
-    background: orangered;
+    background: rgb(255, 145, 0);
 }
 .not-allowed {
     left: 97%;
