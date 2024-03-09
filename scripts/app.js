@@ -25,6 +25,7 @@ const submitBtn = $('.btn-submit');
 const right_article = $('.right');
 const scoreElm = $('#score');
 const high_score = $('#high-score');
+const modalNumber = $('#correctnumber');
 
 /*
  ************* Variables*******************
@@ -254,7 +255,9 @@ const submitHandler = function (e) {
   defaultformData(number_inp, '');
 };
 
-/*INITIAL FUNCTION */
+/**
+ * INITIAL FUNCTION
+ */
 const init = function () {
   /*Set score and high score */
   accessLocal(key, 0, updateDom);
@@ -264,6 +267,16 @@ const init = function () {
   randomNum = generateRandom();
   console.log(randomNum);
 };
+
+const resetHandler = function () {
+  accessLocal(key, 0, updateDom);
+  updateProgressBar(my_bar, 'start', statusMsg, removeClass, addClass);
+  // getDimensions();
+
+  randomNum = generateRandom();
+  console.log(randomNum);
+};
+
 /*
  ************* Event Listners*******************
  */
@@ -277,3 +290,9 @@ article_left.addEventListener('submit', submitHandler);
 
 /*LOAD EVENT */
 window.addEventListener('DOMContentLoaded', init);
+
+/**
+ * RESET BUTTON LISTENER
+ */
+
+bannerBtn.addEventListener('click', resetHandler);
