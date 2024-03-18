@@ -31,8 +31,10 @@ const modalNumber = $('#correctnumber');
  ************* Variables*******************
  */
 const delay = 150;
+const progressDelay = 1000;
 const key = 'high-score';
 let timeout = false;
+let progressTime = false;
 let score = 20;
 let randomNum;
 let statusMsg = 'start';
@@ -207,6 +209,11 @@ const checkRange = function (range, inpData, value, cbArgs) {
   }
 };
 
+const resetProgressBar = function () {
+  updateProgressBar(my_bar, 'start', statusMsg, removeClass, addClass);
+  defaultformData(number_inp, '');
+};
+
 /**********END UTILITY FUNCTIONS************ */
 
 /*
@@ -251,8 +258,9 @@ const submitHandler = function (e) {
     }
   }
   score--;
+  if (progressTime) clearTimeout(progressTime);
+  progressTime = setTimeout(resetProgressBar, progressDelay);
   updateDom(scoreElm, score);
-  defaultformData(number_inp, '');
 };
 
 /**
@@ -271,8 +279,6 @@ const init = function () {
 const resetHandler = function () {
   accessLocal(key, 0, updateDom);
   updateProgressBar(my_bar, 'start', statusMsg, removeClass, addClass);
-  // getDimensions();
-
   randomNum = generateRandom();
   console.log(randomNum);
 };
