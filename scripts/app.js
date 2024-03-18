@@ -277,6 +277,9 @@ const init = function () {
 };
 
 const resetHandler = function () {
+  if (progressTime) clearTimeout(progressTime);
+  progressTime = false;
+  defaultformData(number_inp, '');
   accessLocal(key, 0, updateDom);
   updateProgressBar(my_bar, 'start', statusMsg, removeClass, addClass);
   randomNum = generateRandom();
