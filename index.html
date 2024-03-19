@@ -43,18 +43,23 @@
     </header>
     <!-- end of header -->
 
-    <section id="myModal" class="modal">
+    <section id="myModal" class="modal hide">
       <div class="modal-content">
         <div class="container">
-          <h1>congratulation !!!</h1>
-          <p>you guessed correct number <span id="correctnumber"></span></p>
-          <p>
-            please click the button below!
-            <span class="modal-text" id="modal-message">to play again</span>
-          </p>
+          <h1 class="modal-header"></h1>
+          <p class="modal-message"></p>
+          <span id="correctnumber"></span>
+          <p>please click the button below!</p>
+          <span class="modal-btn-text"></span>
           <div class="btn-group">
-            <button type="button" class="btn btn-again">Again</button>
-            <button type="button" class="btn btn-modal-reset">Reset</button>
+            <button type="button" class="btn hide" id="btn-again">Again</button>
+            <button
+              type="button"
+              class="btn btn-modal-reset hide"
+              id="btn-reset"
+            >
+              Reset
+            </button>
           </div>
         </div>
       </div>
