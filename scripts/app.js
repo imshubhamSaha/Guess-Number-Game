@@ -9,9 +9,9 @@ const modalId = $('#myModal');
 const modal_section = $('.modal');
 const modal_container = $('.modal-content');
 const container = $('.container');
-const modalBtnAgn = $('.btn-again');
-const modalBtnReset = $('.btn-reset');
-const modal_message = $('#modal-message');
+const modalBtnAgn = $('#btn-again');
+const modalBtnReset = $('#btn-reset');
+const modal_btn_message = $('.modal-btn-text');
 const decision_section = $('.decision-section');
 const progress_bar = $('.progress-bar');
 const my_bar = $('.my-bar');
@@ -26,6 +26,8 @@ const right_article = $('.right');
 const scoreElm = $('#score');
 const high_score = $('#high-score');
 const modalNumber = $('#correctnumber');
+const modal_header = $('.modal-header');
+const modal_message = $('.modal-message');
 
 /*
  ************* Variables*******************
@@ -33,11 +35,16 @@ const modalNumber = $('#correctnumber');
 const delay = 150;
 const progressDelay = 1000;
 const key = 'high-score';
+const winMessage = 'congratulation';
+const lostMessage = 'sorry';
+const btnMessage = 'for next round';
+const correctMsg = 'you guessed correct number';
+const errorMsg = 'game over';
 let timeout = false;
 let progressTime = false;
 let score = 20;
 let randomNum;
-let statusMsg = 'start';
+let statusMsg;
 
 /*
  ************* Functions*******************
@@ -88,11 +95,20 @@ const getDimensions = function () {
  * @param {*} cb1 = function
  * @param {*} cb2 = function
  */
-const updateProgressBar = function (element, pushClass, popClass, cb1, cb2) {
+const updateProgressBar = function (
+  element,
+  pushClass,
+  popClass = 'start',
+  cb1,
+  cb2,
+  cb3
+) {
   cb1(element, popClass);
   cb2(element, pushClass);
-  statusMsg = pushClass;
-  progressMsg.innerHTML = statusMsg;
+  if (cb3) {
+    statusMsg = pushClass;
+    cb3(progressMsg, statusMsg);
+  }
 };
 
 /************END DOM FUNCTIONS************ */
@@ -122,10 +138,11 @@ const accessLocal = (key, value, cb) => {
     : value >= getFromLocal(key)
     ? createLocal(key, value)
     : (value = getFromLocal(key));
-
+  score = 20;
   cb(scoreElm, 20);
   cb(high_score, value);
 };
+
 /************END LOCAL STORAGE FUNCTIONS************ */
 
 /**********UTILITY FUNCTIONS************ */
@@ -140,8 +157,8 @@ const generateRandom = () => Math.floor(Math.random() * 20) + 1;
  * @param {*} value => number
  * @returns boolean
  */
-const checkHighScore = (value, key, localCb, DOMcb) => {
-  value >= getFromLocal(key) && localCb(key, value, DOMcb);
+const updateHighScore = (value, key, localCb, DOMcb) => {
+  localCb(key, value, DOMcb);
 };
 /**
  *CHECK FORM DATA
@@ -172,7 +189,6 @@ const checkValue = function (inputVal, range, messageStr) {
     return 'too-' + messageStr;
   }
 };
-
 /**
  * UPDATE STATUS
  * @param {*} inputVal = integer
@@ -183,12 +199,13 @@ const checkValue = function (inputVal, range, messageStr) {
  * @returns none
  */
 const updateStatus = function (inputVal, range, checkCb, updateCb, argsArr) {
-  if (!inputVal || !range || !checkCb || !updateCb || argsArr.length !== 5) {
+  if (!inputVal || !range || !checkCb || !updateCb || argsArr.length < 6) {
     return;
   }
-  const [defaultElm, msg, delCb, addCb, mainClass] = argsArr;
+
+  const [defaultElm, msg, delCb, addCb, updDOmCB, mainClass] = argsArr;
   const appendClass = checkCb(inputVal, range, mainClass);
-  updateCb(defaultElm, appendClass, msg, delCb, addCb);
+  updateCb(defaultElm, appendClass, msg, delCb, addCb, updDOmCB);
 };
 
 /**
@@ -199,21 +216,83 @@ const updateStatus = function (inputVal, range, checkCb, updateCb, argsArr) {
  */
 const checkRange = function (range, inpData, value, cbArgs) {
   const [updateCb, checkValueCb, pbCb, cbArr, lstVal] = cbArgs;
+
   if (range > inpData) {
     const a = cbArr.at(-1) === 'high' ? lstVal : value;
     const b = cbArr.at(-1) === 'high' ? value : lstVal;
+
     updateCb(a, b, checkValueCb, pbCb, cbArr);
   } else {
-    const [htmlEl, msg, popCl, pushCl, appendCl] = cbArr;
-    pbCb(htmlEl, appendCl, msg, popCl, pushCl);
+    const [htmlEl, msg, popCl, pushCl, updDom, appendCl] = cbArr;
+    pbCb(htmlEl, appendCl, msg, popCl, pushCl, updDom);
   }
 };
-
+/**
+ * PROGRESS BAR RESET
+ * @return
+ */
 const resetProgressBar = function () {
-  updateProgressBar(my_bar, 'start', statusMsg, removeClass, addClass);
+  updateProgressBar(
+    my_bar,
+    'start',
+    statusMsg,
+    removeClass,
+    addClass,
+    updateDom
+  );
   defaultformData(number_inp, '');
 };
 
+/**
+ *
+ * @param {*} score int
+ * @param {*} highscore int
+ * @returns boolean
+ */
+const checkGame = (score, highscore) => score === 1 || score - 1 <= highscore;
+
+/**
+ * TIMEOUT RESET
+ * @param {*} element - > string
+ * @returns
+ */
+const timeReset = element => element && clearTimeout(element);
+/**
+ *
+ * @param {*} elem
+ * @param {*} heading
+ * @param {*} msg
+ * @param {*} clr
+ * @param {*} btnmsg
+ * @param {*} showBtn
+ */
+const initalState = function (
+  elem,
+  heading,
+  msg,
+  clr,
+  btnmsg = 'to play again',
+  showBtn
+) {
+  timeReset(progressTime);
+  progressTime = false;
+  updateProgressBar(
+    my_bar,
+    'start',
+    statusMsg,
+    removeClass,
+    addClass,
+    updateDom
+  );
+  updateDom(modal_header, heading);
+  updateDom(modal_message, msg);
+  updateDom(modal_btn_message, btnmsg);
+  updateDom(modalNumber, `Number: ${randomNum}`);
+  container.style.color = clr;
+  updateProgressBar(showBtn, 'show', 'hide', removeClass, addClass);
+  updateProgressBar(elem, 'show', 'hide', removeClass, addClass);
+  // console.log(statusMsg);
+};
 /**********END UTILITY FUNCTIONS************ */
 
 /*
@@ -240,12 +319,27 @@ const submitHandler = function (e) {
     *ELSE CHECK RANGE FUNCTION
    */
   if (checkFormData(value)) {
-    updateProgressBar(my_bar, 'not-allowed', statusMsg, removeClass, addClass);
-  } else if (value === randomNum) {
-    checkHighScore(score, key, accessLocal, updateDom);
-    /*  INIT  */
+    updateProgressBar(
+      my_bar,
+      'not-allowed',
+      statusMsg,
+      removeClass,
+      addClass,
+      updateDom
+    );
+  } else if (value === randomNum && score >= getFromLocal(key)) {
+    initalState(
+      modal_section,
+      winMessage,
+      correctMsg,
+      'green',
+      btnMessage,
+      modalBtnReset
+    );
+
+    return updateHighScore(score, key, accessLocal, updateDom);
   } else {
-    const domCb = [my_bar, statusMsg, removeClass, addClass];
+    const domCb = [my_bar, statusMsg, removeClass, addClass, updateDom];
     const updateCbArgs = [updateStatus, checkValue, updateProgressBar, domCb];
     if (value > randomNum) {
       domCb.push('high');
@@ -257,8 +351,18 @@ const submitHandler = function (e) {
       checkRange(randomNum, 4, value, updateCbArgs);
     }
   }
+
+  if (checkGame(score, getFromLocal(key)))
+    return initalState(
+      modal_section,
+      lostMessage,
+      errorMsg,
+      'red',
+      undefined,
+      modalBtnAgn
+    );
   score--;
-  if (progressTime) clearTimeout(progressTime);
+  timeReset(progressTime);
   progressTime = setTimeout(resetProgressBar, progressDelay);
   updateDom(scoreElm, score);
 };
@@ -269,39 +373,79 @@ const submitHandler = function (e) {
 const init = function () {
   /*Set score and high score */
   accessLocal(key, 0, updateDom);
-  /*Get dimension */
-  getDimensions();
+  updateProgressBar(
+    my_bar,
+    'start',
+    statusMsg,
+    removeClass,
+    addClass,
+    updateDom
+  );
   /*Get random */
   randomNum = generateRandom();
-  console.log(randomNum);
+  // console.log(randomNum);
 };
 
+/**
+ * RESET BUTTON HANDLER
+ */
 const resetHandler = function () {
-  if (progressTime) clearTimeout(progressTime);
+  timeReset(progressTime);
   progressTime = false;
   defaultformData(number_inp, '');
-  accessLocal(key, 0, updateDom);
-  updateProgressBar(my_bar, 'start', statusMsg, removeClass, addClass);
-  randomNum = generateRandom();
-  console.log(randomNum);
+  sessionStorage.setItem(key, 0);
+  init();
+};
+
+/**
+ * AGAIN BUTTN HANDLER
+ * @param {*} e
+ */
+const againHandler = function (e) {
+  init();
+  defaultformData(number_inp, '');
+  updateProgressBar(modal_section, 'hide', 'show', removeClass, addClass);
+  updateProgressBar(modalBtnAgn, 'hide', 'show', removeClass, addClass);
+};
+
+/**
+ * RESET BUTTON HANDLER
+ */
+const modalResetHandler = function () {
+  init();
+  defaultformData(number_inp, '');
+  updateProgressBar(modal_section, 'hide', 'show', removeClass, addClass);
+  updateProgressBar(modalBtnReset, 'hide', 'show', removeClass, addClass);
 };
 
 /*
  ************* Event Listners*******************
  */
+/**
+ * RESIZE EVENT
+ */
 window.addEventListener('resize', () => {
-  clearTimeout(timeout);
+  timeReset(timeout);
   timeout = setTimeout(getDimensions, delay);
 });
-
-/*FORM SUBMIT */
+/**
+ * FORM SUBMIT (GUESSED NUMBER SUBMIT)
+ */
 article_left.addEventListener('submit', submitHandler);
-
-/*LOAD EVENT */
+/**
+ * LOAD EVENT
+ */
 window.addEventListener('DOMContentLoaded', init);
-
 /**
  * RESET BUTTON LISTENER
  */
-
 bannerBtn.addEventListener('click', resetHandler);
+
+/**
+ * AGAIN BUTTON EVENT
+ */
+modalBtnAgn.addEventListener('click', againHandler);
+/**
+ * MODAL RESET EVENT
+ */
+modalBtnReset.addEventListener('click', modalResetHandler);
